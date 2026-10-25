@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanasekaran S — Full-stack, Cloud and AI Engineer</title>
+<meta name="description" content="Thanasekaran S is a Software Engineer in Chennai with 6+ years building and running full-stack web applications on AWS for a Fortune 500 insurance company. Open to senior engineering roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-2: #f3f2ef;
+    --text: #1c1917;
+    --muted: #6b665f;
+    --border: #e7e5e0;
+    --accent: lab(45.4075% -34.0786 -10.8978);
+    --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
+    --accent-text: #ffffff;
+    --good: #059669;
+    --shadow: 0 1px 2px rgba(28,25,23,.04), 0 8px 24px rgba(28,25,23,.06);
+    --radius: 16px;
+    --max: 1100px;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f0e0d;
+    --surface: #181716;
+    --surface-2: #211f1d;
+    --text: #f5f4f2;
+    --muted: #a8a29a;
+    --border: #2b2926;
+    --accent: lab(72% -38 -12);
+    --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+    --accent-text: #0f0e0d;
+    --good: #34d399;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  .container { width: min(var(--max), 100% - 40px); margin-inline: auto; }
+  section { padding: 96px 0; }
+  .skip {
+    position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-text);
+    padding: 8px 14px; border-radius: 8px; z-index: 100;
+  }
+  .skip:focus { left: 12px; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  header.nav.scrolled { border-bottom-color: var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -.02em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    padding: 8px 14px; border-radius: 999px; font-size: .92rem; font-weight: 500; color: var(--muted);
+    transition: color .15s, background .15s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center;
+    transition: transform .15s, background .15s;
+  }
+  .icon-btn:hover { background: var(--surface-2); transform: translateY(-1px); }
+  .menu-btn { display: none; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px;
+    font-weight: 600; font-size: .95rem; border: 1px solid var(--border); background: var(--surface);
+    cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s; font-family: inherit; color: var(--text);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 88px 0 72px;
+    background-image: radial-gradient(90% 100% at 50% 0%, var(--accent-soft), transparent 62%);
+  }
+  #contact {
+    background-image: radial-gradient(90% 100% at 50% 0%, var(--accent-soft), transparent 62%);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 600; margin-bottom: 28px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); position: relative; }
+  .dot::after {
+    content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--good);
+    opacity: .5; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0% { transform: scale(.7); opacity: .7; } 100% { transform: scale(1.6); opacity: 0; } }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .85rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+  h1, h2, .logo, .project h3, .strength h3, .job h3 { font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif; }
+  h1 { font-size: clamp(2.6rem, 7vw, 4.75rem); line-height: 1.05; letter-spacing: -.035em; font-weight: 800; margin: 10px 0 20px; }
+  .hero .lead { font-size: clamp(1.2rem, 2.6vw, 1.6rem); font-weight: 600; max-width: 760px; letter-spacing: -.015em; line-height: 1.35; }
+  .hero .sub { color: var(--muted); max-width: 680px; margin-top: 16px; font-size: 1.05rem; }
+  .hero .meta { color: var(--muted); font-size: .92rem; margin-top: 18px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .socials { display: flex; gap: 10px; margin-top: 28px; }
+
+  .stats-label { margin-top: 64px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 14px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+  .stat b { display: block; font-size: 2.2rem; letter-spacing: -.03em; line-height: 1.1; color: var(--accent); }
+  .stat span { display: block; font-weight: 600; margin-top: 6px; font-size: .95rem; }
+  .stat small { color: var(--muted); font-size: .82rem; }
+
+  /* ---------- Section headings ---------- */
+  .section-head { margin-bottom: 40px; max-width: 680px; }
+  .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); letter-spacing: -.03em; line-height: 1.12; margin: 8px 0 12px; }
+  .section-head p { color: var(--muted); }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 56px; align-items: start; }
+  .about-grid p { color: var(--muted); margin-bottom: 16px; font-size: 1.02rem; }
+  .about-grid p strong { color: var(--text); font-weight: 600; }
+  .facts { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 24px; }
+  .fact { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .fact:last-child { border-bottom: 0; }
+  .fact small { display: block; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+  .fact span { font-weight: 600; word-break: break-word; }
+
+  .strengths { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 56px; }
+  .strength { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: transform .2s, box-shadow .2s; }
+  .strength:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .strength .num { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--accent); font-weight: 500; }
+  .strength h3 { font-size: 1.1rem; letter-spacing: -.01em; margin: 8px 0 8px; }
+  .strength p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+  /* ---------- Work ---------- */
+  .projects { display: grid; gap: 24px; }
+  .project {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 34px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .project:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .project .kicker { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .project h3 { font-size: 1.6rem; letter-spacing: -.02em; margin: 6px 0 2px; }
+  .project .role { color: var(--accent); font-weight: 600; font-size: .95rem; }
+  .project .desc { color: var(--muted); margin-top: 14px; max-width: 760px; }
+  .project h4, .job h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin: 22px 0 10px; }
+  .bullets li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--text); font-size: .96rem; }
+  .bullets li::before { content: ""; position: absolute; left: 0; top: .7em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .tag { padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: .8rem; font-weight: 600; }
+
+  /* ---------- Skills / cards ---------- */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .skill-card h3 { font-size: .85rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 6px 13px; border-radius: 10px; background: var(--surface-2); font-size: .88rem; font-weight: 500;
+    border: 1px solid transparent; transition: border-color .15s, color .15s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.core { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+  .chip.core:hover { color: var(--accent-text); border-color: transparent; }
+  .skill-card.wide { grid-column: 1 / -1; }
+  .edu-name { font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; }
+  .edu-meta { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+  .edu-degree { margin-top: 12px; font-size: .96rem; }
+  .skill-card .bullets li { font-size: .93rem; margin-bottom: 10px; }
+
+  /* ---------- Timeline ---------- */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .job { position: relative; padding-bottom: 20px; }
+  .job::before {
+    content: ""; position: absolute; left: -30px; top: 8px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--accent);
+  }
+  .job .when { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--muted); }
+  .job h3 { font-size: 1.3rem; letter-spacing: -.01em; margin: 4px 0; }
+  .job h3 em { font-style: normal; color: var(--accent); }
+  .job .summary { color: var(--muted); margin-bottom: 4px; max-width: 760px; }
+
+  /* ---------- Contact ---------- */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; }
+  form { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 30px; display: grid; gap: 16px; }
+  label { font-size: .85rem; font-weight: 600; display: grid; gap: 6px; }
+  input, textarea {
+    font: inherit; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); outline: none; transition: border-color .15s, box-shadow .15s;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  textarea { min-height: 130px; resize: vertical; }
+  .hp { position: absolute; left: -9999px; }
+  .form-note { font-size: .85rem; color: var(--muted); }
+  .contact-info p { color: var(--muted); margin-bottom: 20px; }
+  .contact-lines { display: grid; gap: 6px; margin-bottom: 22px; }
+  .contact-lines a { color: var(--accent); font-weight: 600; }
+  .contact-lines a:hover { text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--border); padding: 40px 0; margin-top: 40px; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+  .foot p, .foot a { color: var(--muted); font-size: .9rem; }
+  .foot a:hover { color: var(--accent); }
+  .foot strong { color: var(--text); }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .dot::after { animation: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    section { padding: 72px 0; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .menu-btn { display: grid; }
+    .nav-links {
+      position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 20px 20px;
+      display: none;
+    }
+    .nav-links.open { display: flex; }
+    .project { padding: 24px; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    header.nav, .socials, .cta-row, #contact form, .menu-btn { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    section { padding: 28px 0; }
+    .project, .skill-card, .strength, .stat { box-shadow: none !important; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">TS<span>.</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="badge reveal"><span class="dot"></span> Open to senior engineering roles</div>
+      <p class="eyebrow reveal">Software Engineer · Full-stack · Cloud · AI</p>
+      <h1 class="reveal">Thanasekaran S</h1>
+      <p class="lead reveal">I build and run full-stack web applications on AWS, with a growing focus on AI/ML.</p>
+      <p class="sub reveal">Six-plus years in the insurance domain across React and Next.js, Spring Boot, Node.js and Python, AWS with Terraform, CI/CD and test automation.</p>
+      <p class="meta reveal">HTC Global Services · Chennai, India</p>
+
+      <div class="cta-row reveal">
+        <a href="#contact" class="btn primary">Get in touch</a>
+        <a href="#work" class="btn">View my work</a>
+        <a href="resume.pdf" class="btn">Download résumé</a>
+      </div>
+
+      <div class="socials reveal">
+        <a class="icon-btn" href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:thanasekaran1999@gmail.com" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+        <a class="icon-btn" href="tel:+919841555292" aria-label="Phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+
+      <p class="eyebrow stats-label reveal">At a glance</p>
+      <div class="stats">
+        <div class="stat reveal"><b data-count="6" data-suffix="+">6+</b><span>Years of experience</span><small>Insurance domain, Fortune 500 client</small></div>
+        <div class="stat reveal"><b data-count="300" data-suffix="+">300+</b><span>Test environment issues resolved</span><small>Across multiple test environments</small></div>
+        <div class="stat reveal"><b>AWS</b><span>Certified</span><small>Developer Associate</small></div>
+        <div class="stat reveal"><b data-count="4" data-suffix="">4</b><span>Company awards</span><small>Star Employee ×2, Extra Miler ×2</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">About</p>
+        <h2>An engineer who owns the whole path to production</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>I am a Software Engineer at HTC Global Services in Chennai, where I have worked since December 2020. <strong>All of my project experience is in the insurance domain, working for a Fortune 500 company,</strong> where stability and quality matter every day.</p>
+          <p>I started in monitoring, support and test automation, resolving issues across the test environments of several applications. Since then I have moved into building full-stack applications, provisioning AWS infrastructure with Terraform, and automating delivery, and I am now working on AI.</p>
+          <p>I hold the AWS Certified Developer Associate certification and a B.Tech in Computer Science and Engineering from SRM Institute of Science &amp; Technology.</p>
+        </div>
+        <div class="facts reveal">
+          <div class="fact"><small>Based in</small><span>Chennai, India</span></div>
+          <div class="fact"><small>Focus</small><span>Full-stack, cloud and AI</span></div>
+          <div class="fact"><small>Domain</small><span>Insurance · Fortune 500 client</span></div>
+          <div class="fact"><small>Email</small><span>thanasekaran1999@gmail.com</span></div>
+          <div class="fact"><small>Phone</small><span>+91 98415 55292</span></div>
+        </div>
+      </div>
+
+      <div class="strengths">
+        <div class="strength reveal">
+          <span class="num">01</span>
+          <h3>End-to-end delivery</h3>
+          <p>React and Next.js frontends, Spring Boot, Node.js and Python backends, and PostgreSQL, written to be clean, modular and reusable.</p>
+        </div>
+        <div class="strength reveal">
+          <span class="num">02</span>
+          <h3>Cloud and DevOps</h3>
+          <p>AWS environments provisioned with Terraform, shipped through GitLab CI and AWS CodePipeline, and run on Docker and Kubernetes.</p>
+        </div>
+        <div class="strength reveal">
+          <span class="num">03</span>
+          <h3>Reliability and quality</h3>
+          <p>Monitored multiple test environments, resolved 300+ issues, and automated checks with TOSCA, Playwright and Selenium.</p>
+        </div>
+        <div class="strength reveal">
+          <span class="num">04</span>
+          <h3>Applied AI</h3>
+          <p>Working on AI today, with training in generative AI, AI agents, prompt engineering and the Model Context Protocol.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2>What I have built and run</h2>
+        <p>Four areas of work at HTC Global Services, all for a Fortune 500 insurance client. The client's name is kept confidential.</p>
+      </div>
+
+      <div class="projects">
+
+        <article class="project reveal">
+          <p class="kicker">Build</p>
+          <h3>Full-stack web applications</h3>
+          <p class="role">Frontend, backend and data</p>
+          <p class="desc">Responsive web applications and the APIs behind them, built for enterprise insurance use.</p>
+          <ul class="bullets" style="margin-top:16px">
+            <li>Built responsive UIs with React 18, Next.js, Vite.js and Material-UI that work smoothly across devices.</li>
+            <li>Developed backend APIs with Spring Boot, Node.js with Express.js, and Python with FastAPI and Flask.</li>
+            <li>Designed and optimised PostgreSQL data models, including complex queries.</li>
+            <li>Integrated RESTful and SOAP services so distributed systems communicate reliably.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Vite</span><span class="tag">Spring Boot</span>
+            <span class="tag">Node.js</span><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <p class="kicker">Ship</p>
+          <h3>Cloud infrastructure and delivery</h3>
+          <p class="role">AWS, Terraform and CI/CD</p>
+          <p class="desc">Infrastructure defined as code and pipelines that make deployments fast and stable.</p>
+          <ul class="bullets" style="margin-top:16px">
+            <li>Provisioned and managed AWS with Terraform and Scalr Workspaces, using EC2, Lambda, S3, RDS, DynamoDB, API Gateway, VPC, CloudFront and more.</li>
+            <li>Ran CI/CD with GitLab CI, AWS CodePipeline and CodeDeploy.</li>
+            <li>Containerised applications with Docker and deployed them with Kubernetes.</li>
+            <li>Kept secrets and configuration secure with HashiCorp Vault.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Scalr</span><span class="tag">GitLab CI</span>
+            <span class="tag">CodePipeline</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Vault</span>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <p class="kicker">Keep reliable</p>
+          <h3>Monitoring, support and test automation</h3>
+          <p class="role">AMCC applications, TP2 services and ECRM</p>
+          <p class="desc">Kept the test environments healthy, resolved issues quickly, and automated the checks that catch problems early.</p>
+          <ul class="bullets" style="margin-top:16px">
+            <li>Monitored Env1 to Env7 for AMCC applications, TP2 services and ECRM.</li>
+            <li>Found root causes, raised ServiceNow incidents, worked with the respective teams and developers to resolve them, and documented the fixes.</li>
+            <li>Resolved 300–500 issues across multiple test environments in the AMCC area.</li>
+            <li>Developed TOSCA scripts for proactive monitoring and Playwright scripts for test scenarios.</li>
+            <li>Built a Selenium and Java build validation tool that compares the active VM configuration with the checkout VM configuration for IBM UrbanCode.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">ServiceNow</span><span class="tag">TOSCA</span><span class="tag">Playwright</span><span class="tag">Selenium</span>
+            <span class="tag">Java</span><span class="tag">IBM UrbanCode</span><span class="tag">Dynatrace</span><span class="tag">Splunk</span>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <p class="kicker">Next</p>
+          <h3>Applied AI and generative AI</h3>
+          <p class="role">AI / ML</p>
+          <p class="desc">Hands-on AI work, backed by structured training in generative AI and AI agents.</p>
+          <ul class="bullets" style="margin-top:16px">
+            <li>Currently working on AI.</li>
+            <li>Completed courses in generative AI, AI agents, context engineering, prompt engineering, LangChain and the Model Context Protocol.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">AI / ML</span><span class="tag">Generative AI</span><span class="tag">Prompt Engineering</span><span class="tag">AI Agents</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Where I have worked</h2>
+      </div>
+      <div class="timeline">
+        <div class="job reveal">
+          <p class="when">Dec 2020 – Present · Chennai, India</p>
+          <h3>Software Engineer · <em>HTC Global Services</em></h3>
+          <p class="summary">Insurance domain, Fortune 500 client. Monitoring and support, test automation, full-stack development, AWS infrastructure and AI.</p>
+
+          <ul class="bullets" style="margin-top:16px">
+            <li>Currently working on AI.</li>
+            <li>Built web applications with React.js, Next.js and Vite.js, and backend services with Spring Boot, Node.js with Express.js, FastAPI and Flask.</li>
+            <li>Designed PostgreSQL data models and integrated RESTful and SOAP services.</li>
+            <li>Provisioned AWS with Terraform and Scalr, managed CI/CD with GitLab CI, AWS CodePipeline and CodeDeploy, and deployed containers with Docker and Kubernetes.</li>
+            <li>Automated testing with Selenium, Playwright and TOSCA, and managed secrets with HashiCorp Vault.</li>
+            <li>Worked in Agile teams through sprint planning, reviews, stand-ups and code reviews, following the full SDLC.</li>
+            <li>Monitored Env1 to Env7 for AMCC applications, TP2 services and ECRM, troubleshooting issues and raising ServiceNow incidents.</li>
+            <li>Resolved 300–500 issues across multiple test environments in the AMCC area, working with the respective teams and developers and documenting the fixes.</li>
+            <li>Developed TOSCA scripts for proactive monitoring and Playwright scripts for scenarios.</li>
+            <li>Built a Selenium and Java build validation tool comparing active and checkout VM configurations for IBM UrbanCode.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>What I work with</h2>
+        <p>The highlighted row is what I use most. The rest is what the work has needed.</p>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-card wide reveal">
+          <h3>Core</h3>
+          <div class="chips">
+            <span class="chip core">Java</span><span class="chip core">JavaScript</span><span class="chip core">TypeScript</span><span class="chip core">Python</span>
+            <span class="chip core">React.js</span><span class="chip core">Next.js</span><span class="chip core">Spring Boot</span><span class="chip core">Node.js</span>
+            <span class="chip core">PostgreSQL</span><span class="chip core">AWS</span><span class="chip core">Terraform</span><span class="chip core">Docker</span><span class="chip core">Kubernetes</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Frameworks</h3>
+          <div class="chips"><span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">Vite.js</span><span class="chip">Spring Boot</span><span class="chip">Express.js</span><span class="chip">FastAPI</span><span class="chip">Flask</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Databases</h3>
+          <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">DynamoDB</span><span class="chip">RDS</span><span class="chip">Redshift</span></div>
+        </div>
+        <div class="skill-card wide reveal">
+          <h3>Cloud &amp; DevOps</h3>
+          <div class="chips">
+            <span class="chip">AWS EC2</span><span class="chip">Lambda</span><span class="chip">Auto Scaling</span><span class="chip">Elastic IP</span><span class="chip">S3</span>
+            <span class="chip">RDS</span><span class="chip">DynamoDB</span><span class="chip">Redshift</span><span class="chip">API Gateway</span><span class="chip">Route 53</span>
+            <span class="chip">VPC</span><span class="chip">SQS</span><span class="chip">CloudFront</span><span class="chip">Glue</span><span class="chip">Athena</span>
+            <span class="chip">CloudWatch</span><span class="chip">IAM</span><span class="chip">Secrets Manager</span><span class="chip">AWS DMS</span>
+            <span class="chip">Terraform</span><span class="chip">Scalr Workspaces</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Vault</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Testing &amp; automation</h3>
+          <div class="chips"><span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip">TOSCA</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Monitoring &amp; incident management</h3>
+          <div class="chips"><span class="chip">Dynatrace</span><span class="chip">Splunk</span><span class="chip">CloudWatch</span><span class="chip">ServiceNow</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>AI / ML</h3>
+          <div class="chips"><span class="chip">Generative AI</span><span class="chip">Prompt Engineering</span><span class="chip">AI Agents</span><span class="chip">Context Engineering</span><span class="chip">LangChain</span><span class="chip">LangChain.js</span><span class="chip">OpenAI</span><span class="chip">Model Context Protocol</span><span class="chip">Databricks</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>CI/CD &amp; version control</h3>
+          <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">GitLab CI</span><span class="chip">AWS CodePipeline</span><span class="chip">CodeDeploy</span><span class="chip">IBM UrbanCode</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Tools &amp; methods</h3>
+          <div class="chips"><span class="chip">Maven</span><span class="chip">NPM</span><span class="chip">pip</span><span class="chip">VS Code</span><span class="chip">Spring Tool Suite</span><span class="chip">Postman</span><span class="chip">Bruno</span><span class="chip">Agile</span><span class="chip">Scrum</span><span class="chip">SDLC</span><span class="chip">JIRA</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Credentials</p>
+        <h2>Education, certifications and awards</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-card reveal">
+          <h3>Education</h3>
+          <p class="edu-name">SRM Institute of Science &amp; Technology</p>
+          <p class="edu-meta">Chennai, India · July 2016 – July 2020</p>
+          <p class="edu-degree">Bachelor of Technology, Computer Science and Engineering. 83%, First Class.</p>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Awards</h3>
+          <ul class="bullets">
+            <li>Star Employee, April and July 2022, HTC Global Services</li>
+            <li>Extra Miler Award, October 2022 and October 2023, HTC Global Services</li>
+            <li>2nd Prize, ANDROFIZZ (TEXUS 2019), SRMIST</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Certifications and cloud training</h3>
+          <ul class="bullets">
+            <li><strong>AWS Certified Developer Associate</strong>, AWS</li>
+            <li>Advanced React and React Basics, Meta</li>
+            <li>Python Basics, University of Michigan</li>
+            <li>REST APIs with Flask and Python, Packt (Nov 2025)</li>
+            <li>AWS Infrastructure, HTC Global Services (Aug 2025)</li>
+            <li>Advanced Terraform, LinkedIn Learning Community (Jul 2025)</li>
+            <li>DevOps on AWS: Code, Build, and Test</li>
+            <li>AWS Cloud Technical Essentials</li>
+            <li>Deploy React.js App on AWS</li>
+            <li>Spoken English Intermediate, British Council</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>AI courses</h3>
+          <ul class="bullets">
+            <li>Introduction to Model Context Protocol, Anthropic (Jul 2026)</li>
+            <li>Claude 101, Anthropic</li>
+            <li>Generative AI Fundamentals and AI Agent Fundamentals, Databricks</li>
+            <li>Gen AI: Context Engineering and Agentic AI Foundation</li>
+            <li>Getting Started with Prompt Engineering</li>
+            <li>Building a Personalized Chatbot with OpenAI and LangChain</li>
+            <li>LangChain.js: An AI ToolChain for JavaScript Developers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-info reveal">
+          <p class="eyebrow">Contact</p>
+          <div class="section-head" style="margin-bottom:16px">
+            <h2>Hiring for a senior engineering role? Let's talk.</h2>
+          </div>
+          <p>I am open to senior engineering roles in full-stack, cloud and AI. Send a note and I will reply.</p>
+          <div class="contact-lines">
+            <a href="mailto:thanasekaran1999@gmail.com">thanasekaran1999@gmail.com</a>
+            <a href="tel:+919841555292">+91 98415 55292</a>
+          </div>
+          <a class="btn" href="mailto:thanasekaran1999@gmail.com">or email me directly</a>
+        </div>
+
+        <!-- Opens the visitor's email app with the message filled in. Swap for Formspree/Netlify Forms if you want real form submissions. -->
+        <form id="contactForm" class="reveal" novalidate>
+          <label>Name <input type="text" name="name" required autocomplete="name"></label>
+          <label>Email <input type="email" name="email" required autocomplete="email"></label>
+          <label>Message <textarea name="message" required></textarea></label>
+          <label class="hp" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          <button class="btn primary" type="submit">Send message</button>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <p><strong>Thanasekaran S</strong></p>
+      <p>Software Engineer · Chennai, India</p>
+      <p><a href="mailto:thanasekaran1999@gmail.com">thanasekaran1999@gmail.com</a> · <a href="tel:+919841555292">+91 98415 55292</a></p>
+    </div>
+    <div>
+      <p><a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" target="_blank" rel="noopener">LinkedIn</a> ·
+         <a href="mailto:thanasekaran1999@gmail.com">Email</a></p>
+      <p>© <span id="year"></span> Thanasekaran S. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme: remember choice, else follow system */
+  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  var saved = safeGet('theme');
+  var prefersDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    safeSet('theme', next);
+  });
+
+  /* Mobile menu */
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navLinks.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  });
+
+  /* Nav border on scroll */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Active link highlighting */
+  var links = [].slice.call(navLinks.querySelectorAll('a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { s && spy.observe(s); });
+
+    /* Reveal on scroll */
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: .12 });
+    [].forEach.call(document.querySelectorAll('.reveal'), function (el) { io.observe(el); });
+
+    /* Count-up for hero stats */
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        co.unobserve(en.target);
+        if (reduce) return;
+        var el = en.target;
+        var end = parseFloat(el.dataset.count);
+        var dec = parseInt(el.dataset.decimals || '0', 10);
+        var suf = el.dataset.suffix || '';
+        var start = performance.now(), dur = 1200;
+        (function tick(now){
+          var p = Math.min((now - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (end * eased).toFixed(dec) + (p === 1 ? suf : '');
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }, { threshold: .6 });
+    [].forEach.call(document.querySelectorAll('[data-count]'), function (el) { co.observe(el); });
+  } else {
+    [].forEach.call(document.querySelectorAll('.reveal'), function (el) { el.classList.add('in'); });
+  }
+
+  /* Contact form: opens the visitor's email client */
+  var form = document.getElementById('contactForm');
+  var note = document.getElementById('formNote');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    if (d.get('company')) return; // honeypot
+    var name = (d.get('name') || '').trim(), email = (d.get('email') || '').trim(), msg = (d.get('message') || '').trim();
+    if (!name || !/^\S+@\S+\.\S+$/.test(email) || !msg) { note.textContent = 'Please fill in your name, a valid email and a message.'; return; }
+    var subject = encodeURIComponent('Portfolio enquiry from ' + name);
+    var body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:thanasekaran1999@gmail.com?subject=' + subject + '&body=' + body;
+    note.textContent = 'Opening your email app…';
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
